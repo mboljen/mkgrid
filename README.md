@@ -1,4 +1,4 @@
-# colgrid
+# mkgrid
 
 Apply collocation with prediction and filtering for scattered data
 
@@ -11,7 +11,7 @@ $ make
 $ make install
 ```
 
-The default `PREFIX` is set to `/usr/local`.  In order to succesfully complete the installation, you need to have write permissions for the installation location.
+The default `PREFIX` is set to `/usr/local`.  In order to successfully complete the installation, you need to have write permissions for the installation location.
 
 ## Requires
 
@@ -21,7 +21,7 @@ The default `PREFIX` is set to `/usr/local`.  In order to succesfully complete t
 ## Usage
 
 ```bash
-$ colgrid [ --options ] OUTFILE
+$ mkgrid [ --options ] OUTFILE
 ```
 
 ### Options
@@ -84,7 +84,7 @@ $ colgrid [ --options ] OUTFILE
 
 ## Description
 
-`colgrid` correlates scattered data of any dimension to a regular grid
+`mkgrid` correlates scattered data of any dimension to a regular grid
 making use of the collocation method with prediction and filtering of
 Moritz and Wolf.
 
