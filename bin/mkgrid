@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 #
 # Created:         Di 2020-10-27 11:39:11 CET
-# Last modified:   So 2021-02-07 14:15:37 CET
+# Last modified:   Wed 2021-08-04 17:23:10 CEST
 #
 # mkgrid:
 #    Interpolations scattered data to regular grids using
@@ -199,7 +199,7 @@ B<mkgrid> [I<options>] [F<outfile>]
 
 =head1 DESCRIPTION
 
-B<colgrid> correlates scattered data of any dimension to a regular grid
+B<mkgrid> correlates scattered data of any dimension to a regular grid
 making use of the collocation method with prediction and filtering of
 Moritz and Wolf.
 
