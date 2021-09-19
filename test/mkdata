@@ -1,0 +1,70 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+use Math::Trig ':pi';
+use Regexp::Common qw(number);
+
+my ( $xrange, $yrange, $err, $fun, $npts ) = ( '0:2*pi', '0:0', 0, 1, 30 );
+
+GetOptions(
+    'xrange=s' => \$xrange,
+    'yrange=s' => \$yrange,
+    'fun=i'    => \$fun,
+    'err=f'    => \$err,
+    'npts=i'   => \$npts,
+);
+
+#
+die "Invalid xrange: $xrange" unless $xrange =~ m/^$RE{num}{real}\:$RE{num}{real}$/;
+die "Invalid yrange: $yrange" unless $yrange =~ m/^$RE{num}{real}\:$RE{num}{real}$/;
+
+#
+my ( $xlo, $xhi ) = split(/:/, $xrange);
+my ( $ylo, $yhi ) = split(/:/, $yrange);
+
+#
+die "Invalid xrange: $xlo .. $xhi" unless $xlo <= $xhi;
+die "Invalid yrange: $ylo .. $yhi" unless $ylo <= $yhi;
+die "Invalid err: $err" if $err < 0;
+die "Invalid npts: $npts" unless $npts > 1;
+
+#
+sub fun1 { sin($_[0]) }
+sub fun2 { $_[0] + $_[1] }
+sub fun3 { $_[0] * $_[1] }
+
+#
+my (@data,$funsub);
+
+#
+if    ( $fun == 1 ) { $funsub = \&fun1; }
+elsif ( $fun == 2 ) { $funsub = \&fun2; }
+elsif ( $fun == 3 ) { $funsub = \&fun3; }
+else
+{
+    #
+    die "Invalid function reference: $fun";
+}
+
+for my $i (0 .. $npts-1)
+{
+    my $x = $xlo + ( $xhi - $xlo ) * rand(1);
+    my $y = $ylo + ( $yhi - $ylo ) * rand(1);
+
+    my $z = &$funsub($x,$y) + $err * ( 2 * rand(1) - 1 );
+
+    $data[$i] = [ $x, $y, $z ];
+}
+
+#
+@data = sort { $a->[0] <=> $b->[0] } @data;
+
+for my $i (0 .. $#data)
+{
+    # Print data
+    map { printf "%10.3f", $_ } @{$data[$i]};
+    print "\n";
+}

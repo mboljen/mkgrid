@@ -42,6 +42,7 @@ clean:
 all: $(MAN) $(PKG) $(SIG)
 
 test:
+	make -C test
 
 tag:
 	git tag v$(VERSION)
