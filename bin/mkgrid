@@ -20,6 +20,7 @@ use Getopt::Long;
 use List::Util qw(any max);
 use Pod::Usage;
 use POSIX qw(strftime);
+use Regexp::Common qw(number);
 use Spreadsheet::Read::Simple;
 use Time::HiRes qw(clock);
 
@@ -73,6 +74,24 @@ pod2usage(-exitval => 0, -verbose => 2) if $man;
 @using = split(/,/, join(',', @using));
 @range = split(/,/, join(',', @range));
 @grid  = split(/,/, join(',', @grid));
+
+# Subroutine to replace integer range specifiers
+sub substintrange
+{
+    my @result;
+    my $arg = shift;
+    if ($arg =~ m/^($RE{num}{int})$/) { push @result, $1; }
+    elsif ($arg =~ m/^($RE{num}{int})\:($RE{num}{int})$/) { push @result, $1 .. $2; }
+    else
+    {
+        die "Invalid item in integer range specification: $arg";
+    }
+    @result;
+}
+
+# Analyse arrays columns and grid
+@using = map { substintrange($_) } @using;
+@grid  = map { substintrange($_) } @grid;
 
 # If not sheetname is given, take the first one
 $sheetname = 1 unless defined $sheetname;
