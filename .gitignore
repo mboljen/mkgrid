@@ -1,2 +1,5 @@
 pkg/
 share/
+test/fun?.dat
+test/fun?.png
+test/fun?.out

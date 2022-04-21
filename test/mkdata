@@ -34,7 +34,8 @@ die "Invalid npts: $npts" unless $npts > 1;
 #
 sub fun1 { sin($_[0]) }
 sub fun2 { $_[0] + $_[1] }
-sub fun3 { $_[0] * $_[1] }
+sub fun3 { sin( sqrt( $_[0]**2 + $_[1]**2 ) )
+              / sqrt( $_[0]**2 + $_[1]**2 ) }
 
 #
 my (@data,$funsub);
@@ -54,7 +55,7 @@ for my $i (0 .. $npts-1)
     my $x = $xlo + ( $xhi - $xlo ) * rand(1);
     my $y = $ylo + ( $yhi - $ylo ) * rand(1);
 
-    my $z = &$funsub($x,$y) + $err * ( 2 * rand(1) - 1 );
+    my $z = &$funsub($x,$y) + $err * ( 2.0 * rand(1) - 1.0 );
 
     $data[$i] = [ $x, $y, $z ];
 }

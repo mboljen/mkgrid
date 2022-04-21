@@ -16,6 +16,6 @@ set xrange [0:2*pi]
 set xtics 0.5*pi
 set format x '%.1Pπ'
 
-plot "fun1.dat" u 1:3 t "scattered data w errors" w points pt 7, \
-     "fun1.out" u 1:2 t "mkgrid"                  w lines, \
-      sin(x)          t "function"                w lines
+plot sin(x)           t "input function"           w lines, \
+     "fun1.dat" u 1:3 t "scattered data w errors"  w points pt 7, \
+     "fun1.out" u 1:2 t "mkgrid"                   w lines

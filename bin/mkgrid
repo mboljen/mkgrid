@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 #
 # Created:         Di 2020-10-27 11:39:11 CET
-# Last modified:   Wed 2021-08-04 17:23:10 CEST
+# Last modified:   Mi 2022-04-20 00:07:33 CEST
 #
 # mkgrid:
 #    Interpolations scattered data to regular grids using
@@ -28,7 +28,7 @@ use Time::HiRes qw(clock);
 use Math::Collocate;
 
 # Declare variables
-my ($infile,$sheetname,$outfile,$sigs,$sign,$sh,@range,@grid,@using);
+my ($infile,$sheetname,$outfile,$sigs,$sign,$sh,$bucket,@range,@grid,@using);
 my ($yes,$man,$help,$unlink) = (0,0,0,0);
 
 # Exit if neither STDIN nor arguments are defined
@@ -60,6 +60,7 @@ GetOptions(
     's|sigs=f'   => \$sigs,
     'n|sign=f'   => \$sign,
     'sh=f'       => \$sh,
+    'bucket=i'   => \$bucket,
     'sheet=s'    => \$sheetname,
     'y|yes'      => \$yes,
     'man'        => \$man,
@@ -158,9 +159,10 @@ for my $row (1 .. $sheet->maxrow)
 }
 
 # Calibrate object
-$obj->sign($sign) if defined $sign;
-$obj->sigs($sigs) if defined $sigs;
-$obj->sh($sh)     if defined $sh;
+$obj->sign($sign)     if defined $sign;
+$obj->sigs($sigs)     if defined $sigs;
+$obj->sh($sh)         if defined $sh;
+$obj->bucket($bucket) if defined $bucket;
 
 # Calculate grid
 my $t0 = clock();
@@ -272,6 +274,11 @@ free of any measurement error.
 
 Sets the half width of the problem.  If omitted, the smallest distance
 of all given samples is used as default which is usually a good value.
+
+=item B<--bucket>=I<number>
+
+Sets the bucket size, i.e. consider only closest number of points for
+interpolation.  If ommitted, all points are used for interpolation.
 
 =item B<-y>, B<--yes>
 

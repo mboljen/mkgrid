@@ -11,5 +11,6 @@ set xlabel "x"
 set ylabel "y"
 set zlabel "z"
 
-splot "fun2.dat" u 1:2:3 t "scattered data" w points pt 7, \
+splot x+y                t "input function" w lines, \
+      "fun2.dat" u 1:2:3 t "scattered data" w points pt 7, \
       "fun2.out" u 1:2:3 t "mkgrid"         w lines
