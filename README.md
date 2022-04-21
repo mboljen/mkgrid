@@ -70,6 +70,11 @@ $ mkgrid [ --options ] OUTFILE
   Sets the half width of the problem.  If omitted, the smallest distance
   of all given samples is used as default which is usually a good value.
 
++ `--bucket` _number_
+
+  Sets the number of samples to consider for collocation.  If undefined, all
+  sample points are used.  Use this option for large data sets.
+
 + `-y`, `--yes`
 
   Overwrite existing output files.
