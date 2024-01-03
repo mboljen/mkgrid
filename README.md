@@ -15,7 +15,7 @@ The default `PREFIX` is set to `/usr/local`.  In order to successfully complete 
 
 ## Requires
 
-- [File::Speadsheet::Read::Simple](https://github.com/mboljen/spreadsheet-read-simple-perl)
+- [Speadsheet::Read::Simple](https://github.com/mboljen/spreadsheet-read-simple-perl)
 - [Math::Collocate](https://github.com/mboljen/math-collocate-perl)
 
 ## Usage
