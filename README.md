@@ -5,7 +5,7 @@ Apply collocation with prediction and filtering for scattered data
 
 ## Description
 
-`mkgrid` correlates scattered data of any dimension to a regular grid
+This script correlates scattered data of any dimension to a regular grid
 making use of the collocation method with prediction and filtering of
 Moritz and Wolf.
 
