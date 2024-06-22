@@ -2,29 +2,24 @@
 
 Apply collocation with prediction and filtering for scattered data
 
-## Installation
 
-Use the following command to install this software:
+## Description
 
-```bash
-$ make
-$ make install
+`mkgrid` correlates scattered data of any dimension to a regular grid
+making use of the collocation method with prediction and filtering of
+Moritz and Wolf.
+
+If no output file `OUTFILE` is given, the output is directed to `STDOUT`.
+
+
+## Synopsis
+
+```console
+$ mkgrid [OPTION]... OUTFILE
 ```
 
-The default `PREFIX` is set to `/usr/local`.  In order to successfully complete the installation, you need to have write permissions for the installation location.
 
-## Requires
-
-- [Speadsheet::Read::Simple](https://github.com/mboljen/spreadsheet-read-simple-perl)
-- [Math::Collocate](https://github.com/mboljen/math-collocate-perl)
-
-## Usage
-
-```bash
-$ mkgrid [ --options ] OUTFILE
-```
-
-### Options
+## Options
 
 + `-i`, `--infile` _filename_
 
@@ -87,19 +82,31 @@ $ mkgrid [ --options ] OUTFILE
 
   Prints a brief help message and exits.
 
-## Description
 
-`mkgrid` correlates scattered data of any dimension to a regular grid
-making use of the collocation method with prediction and filtering of
-Moritz and Wolf.
+## Requirements
 
-If no output file `OUTFILE` is given, the output is directed to `STDOUT`.
+- [Speadsheet::Read::Simple](https://github.com/mboljen/spreadsheet-read-simple-perl)
+- [Math::Collocate](https://github.com/mboljen/math-collocate-perl)
+
+
+## Installation
+
+Use the following command to install this software:
+
+```console
+$ make
+$ make install
+```
+
+The default `PREFIX` is set to `/usr/local`.  In order to successfully complete the installation, you need to have write permissions for the installation location.
+
 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
 
 ## License
 
