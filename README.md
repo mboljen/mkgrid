@@ -3,6 +3,13 @@
 Apply collocation with prediction and filtering for scattered data
 
 
+## Synopsis
+
+```console
+$ mkgrid [OPTION]... OUTFILE
+```
+
+
 ## Description
 
 This script correlates scattered data of any dimension to a regular grid
@@ -10,13 +17,6 @@ making use of the collocation method with prediction and filtering of
 Moritz and Wolf.
 
 If no output file `OUTFILE` is given, the output is directed to `STDOUT`.
-
-
-## Synopsis
-
-```console
-$ mkgrid [OPTION]... OUTFILE
-```
 
 
 ## Options

@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 #
 # Created:         Di 2020-10-27 11:39:11 CET
-# Last modified:   Mi 2022-04-20 00:07:33 CEST
+# Last modified:   Mo 2024-06-24 09:02:31 CEST
 #
 # mkgrid:
 #    Interpolations scattered data to regular grids using
@@ -29,7 +29,7 @@ use Math::Collocate;
 
 # Declare variables
 my ($infile,$sheetname,$outfile,$sigs,$sign,$sh,$bucket,@range,@grid,@using);
-my ($yes,$man,$help,$unlink) = (0,0,0,0);
+my ($yes,$help,$unlink) = (0,0,0);
 
 # Exit if neither STDIN nor arguments are defined
 pod2usage(1) if -t STDIN and not @ARGV;
@@ -63,13 +63,11 @@ GetOptions(
     'bucket=i'   => \$bucket,
     'sheet=s'    => \$sheetname,
     'y|yes'      => \$yes,
-    'man'        => \$man,
     'help|?'     => \$help,
 );
 
 # Show plain old documentation
 pod2usage(1) if $help;
-pod2usage(-exitval => 0, -verbose => 2) if $man;
 
 # Allow comma-separated lists of values
 @using = split(/,/, join(',', @using));
@@ -215,7 +213,7 @@ mkgrid - Apply collocation with prediction and filtering for scattered data
 
 =head1 SYNOPSIS
 
-B<mkgrid> [I<options>] [F<outfile>]
+B<mkgrid> [I<OPTION>]... [F<OUTFILE>]
 
 
 =head1 DESCRIPTION
@@ -233,64 +231,60 @@ If no output file F<outfile> is given, the output is directed to STDOUT.
 
 =item B<-i>, B<--infile>=I<filename>
 
-Sets the filename of the input spreadsheet.  If omitted, input data is read
+Set the filename of the input spreadsheet.  If omitted, input data is read
 from STDIN.
 
 =item B<-u>, B<--using>=I<col>[,..],I<col>
 
-Sets the columns of the input spreadsheet to read the sample data from.
+Set the columns of the input spreadsheet to read the sample data from.
 More than one abscissa column can be specified.  The last column holds
 the value at the given locations.  If omitted, all available columns
 are selected.
 
 =item B<--sheet>=I<name>
 
-Sets the name of the spreadsheet the columns of option B<--using> refer to.
+Set the name of the spreadsheet the columns of option B<--using> refer to.
 If omitted, the first avilable sheet is selected.
 
 =item B<-r>, B<--range>=[I<lbound>]:[I<ubound>][,..]
 
-Sets the output range for which the regular grid data shall be predicted.
+Set the output range for which the regular grid data shall be predicted.
 Each dimension can be specified using a lower and an upper boundary value
 separated by a colon (C<:>).  If either of both values is omitted, the
 value will be determined automatically according to the submitted samples.
 
 =item B<-g>, B<--grid>=I<number>[,..]
 
-Sets the discretization for the output regular grid.  If only one value
+Set the discretization for the output regular grid.  If only one value
 is given, it will be used for each dimension of the problem.  Multiple
 grid values can be given by a comma-separated list.
 
 =item B<-s>, B<--sigs>=I<value>
 
-Sets the signal variance.
+Set the signal variance.
 
 =item B<-n>, B<--sign>=I<value>
 
-Sets the noise variance.  Set this value to zero if the sample data is
+Set the noise variance.  Set this value to zero if the sample data is
 free of any measurement error.
 
 =item B<--sh>=I<number>
 
-Sets the half width of the problem.  If omitted, the smallest distance
+Set the half width of the problem.  If omitted, the smallest distance
 of all given samples is used as default which is usually a good value.
 
 =item B<--bucket>=I<number>
 
-Sets the bucket size, i.e. consider only closest number of points for
+Set the bucket size, i.e. consider only closest number of points for
 interpolation.  If ommitted, all points are used for interpolation.
 
 =item B<-y>, B<--yes>
 
 Overwrite existing output files.
 
-=item B<--man>
-
-Prints the manual page and exits.
-
 =item B<--help>
 
-Prints a brief help message and exits.
+Print a brief help message and exit.
 
 =back
 
